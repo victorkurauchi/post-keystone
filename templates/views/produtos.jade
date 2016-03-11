@@ -1,0 +1,20 @@
+extends ../layouts/default
+
+block intro
+	.container
+		h1 Nossos produtos
+	
+block content
+	.container
+		if produtos.length
+			each item in produtos
+				h2= item.produto
+					.pull-right.text-muted R$ #{item.preco}
+
+				p= item.descricao.breve
+				
+				.row.gallery-images
+					each image in item.imagens
+						.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
+		else
+			h3.text-muted Ainda não temos produtos cadastrados :(
